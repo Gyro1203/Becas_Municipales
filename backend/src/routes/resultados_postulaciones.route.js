@@ -1,7 +1,7 @@
 "use strict";
 const express = require("express");
 const router = express.Router();
-const resultadosController = require("../controllers/resultado_postulacion_controller.js");
+const resultadosController = require("../controllers/resultado_postulacion.controller.js");
 
 router.get("/resultados", formController.getForms);
 router.post("/submitresultado", formController.createFrom);

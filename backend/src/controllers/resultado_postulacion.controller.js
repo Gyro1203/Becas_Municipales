@@ -2,7 +2,7 @@
 
 const { respondSuccess, respondError } = require("../utils/resHandler");
 const { handleError } = require("../utils/errorHandler");
-const { Resultado } = require("../models/resultado_postulacion");
+const { Resultado } = require("../models/resultado_postulacion.model");
 
 // crear 
 
