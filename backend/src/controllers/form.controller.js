@@ -30,7 +30,7 @@ async function createFrom(req, res) {
     
         const [newForm, formError] = await FormService.createForm(body);
     
-        if (formError) return respondError(req, res, 400, userError);
+        if (formError) return respondError(req, res, 400, formError);
         if (!newForm) {
           return respondError(req, res, 400, "No se creo la postulación");
         }
@@ -42,7 +42,50 @@ async function createFrom(req, res) {
       }
 }
 
+/**
+ * Obtener postulacion por medio del id
+ */
+async function getFormById(req, res) {
+  try {
+    const { params } = req;
+
+    const [form, errorForm] = await FormService.getFormById(params.id);
+
+    if (errorForm) return respondError(req, res, 404, errorForm);
+
+    respondSuccess(req, res, 200, form);
+  } catch (error) {
+    handleError(error, "form.controller -> getFormById");
+    respondError(req, res, 500, "No se pudo obtener la postulación");
+  }
+}
+
+/**
+ * Eliminar una postulacion
+ */
+async function deleteForm(req, res) {
+  try {
+    const { params } = req;
+
+    const form = await FormService.deleteForm(params.id);
+    !form
+      ? respondError(
+          req,
+          res,
+          404,
+          "No se encontro el usuario solicitado",
+          "Verifique el id ingresado",
+        )
+      : respondSuccess(req, res, 200, form);
+  } catch (error) {
+    handleError(error, "form.controller -> deleteForm");
+    respondError(req, res, 500, "No se pudo eliminar el formulario");
+  }
+}
+
 module.exports = {
     getForms,
     createFrom,
+    deleteForm,
+    getFormById,
 };
