@@ -37,19 +37,19 @@ async function createUsers() {
     const count = await User.estimatedDocumentCount();
     if (count > 0) return;
 
-    const admin = await Role.findOne({ name: "admin" });
-    const user = await Role.findOne({ name: "user" });
+    const admin = await Role.findOne({ name: "admin" }).exec();
+    const user = await Role.findOne({ name: "user" }).exec();
 
     await Promise.all([
       new User({
         username: "user",
-        email: "user@email.com",
+        rut: "222222222",
         password: await User.encryptPassword("user123"),
         roles: user._id,
       }).save(),
       new User({
         username: "admin",
-        email: "admin@email.com",
+        rut: "111111111",
         password: await User.encryptPassword("admin123"),
         roles: admin._id,
       }).save(),

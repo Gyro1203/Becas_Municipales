@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    email: {
+    rut: {
       type: String,
       required: true,
       unique: true,

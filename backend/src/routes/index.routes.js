@@ -8,6 +8,8 @@ const userRoutes = require("./user.routes.js");
 /** Enrutador de autenticación */
 const authRoutes = require("./auth.routes.js");
 
+const formRoutes = require("./form.routes.js");
+
 /** Middleware de autenticación */
 const authenticationMiddleware = require("../middlewares/authentication.middleware.js");
 
@@ -20,6 +22,8 @@ router.use("/users", authenticationMiddleware, userRoutes);
 router.use("/auth", authRoutes);
 // Define la ruta para la apelation /api/apelation
 router.use("/apelation", authenticationMiddleware, require("./apelation.routes.js"));
+
+router.use("/forms", formRoutes);
 
 // Exporta el enrutador
 module.exports = router;

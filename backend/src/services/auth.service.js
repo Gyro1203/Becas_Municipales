@@ -21,9 +21,9 @@ const { handleError } = require("../utils/errorHandler");
  */
 async function login(user) {
   try {
-    const { email, password } = user;
+    const { rut, password } = user;
 
-    const userFound = await User.findOne({ email: email })
+    const userFound = await User.findOne({ rut: rut })
       .populate("roles")
       .exec();
     if (!userFound) {
@@ -40,7 +40,7 @@ async function login(user) {
     }
 
     const accessToken = jwt.sign(
-      { email: userFound.email, roles: userFound.roles },
+      { rut: userFound.rut, roles: userFound.roles },
       ACCESS_JWT_SECRET,
       {
         expiresIn: "1d",
@@ -48,7 +48,7 @@ async function login(user) {
     );
 
     const refreshToken = jwt.sign(
-      { email: userFound.email },
+      { rut: userFound.rut },
       REFRESH_JWT_SECRET,
       {
         expiresIn: "7d", // 7 días
@@ -79,7 +79,7 @@ async function refresh(cookies) {
         if (err) return [null, "La sesion a caducado, vuelva a iniciar sesion"];
 
         const userFound = await User.findOne({
-          email: user.email,
+          rut: user.rut,
         })
           .populate("roles")
           .exec();
@@ -87,7 +87,7 @@ async function refresh(cookies) {
         if (!userFound) return [null, "No usuario no autorizado"];
 
         const accessToken = jwt.sign(
-          { email: userFound.email, roles: userFound.roles },
+          { rut: userFound.rut, roles: userFound.roles },
           ACCESS_JWT_SECRET,
           {
             expiresIn: "1d",
