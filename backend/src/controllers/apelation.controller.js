@@ -2,6 +2,7 @@
 
 const resHandlers = require("../utils/resHandler");
 const errorHandlers = require("../utils/errorHandler");
+const { apelationBodySchema, apelationIdSchema } = require("../schema/apelation.schema");
 
 /** Servicios de autenticación */
 const ApelationServices = require("../services/apelation.service");
@@ -38,19 +39,18 @@ async function createApelation(req, res) {
   try {
     const { body } = req;
     const { error: bodyError } = apelationBodySchema.validate(body);
-    if (bodyError) return repondError(req, res, 400, bodyError.message);
+    if (bodyError) return resHandlers.respondError(req, res, 400, bodyError.message);
 
-    const [newApelation, error] = await ApelationServices.createApelation(body);
+    const [newApelation, error] = await ApelationServices.createApelations(body);
 
-    if (error) return repondError(req, res, 400, error);
+    if (error) return resHandlers.respondError(req, res, 400, error);
     if (!newApelation) {
-      return repondError(req, res, 400, "No se creo la apelacion");
+      return resHandlers.respondError(req, res, 400, "No se creo la apelacion");
     }
 
-    respondSuccess(req, res, 201, newApelation);
+    resHandlers.respondSuccess(req, res, 201, newApelation);
   } catch (error) {
-    handleError(error, "apelation.controller -> createApelation");
-    repondError(req, res, 500, "No se creo la apelacion");
+    errorHandlers.handleError(error, "apelation.controller -> createApelation");
   }
 }
 /**
