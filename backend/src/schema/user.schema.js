@@ -19,10 +19,13 @@ const userBodySchema = Joi.object({
     "string.base": "La contraseña debe ser de tipo string.",
     "string.min": "La contraseña debe tener al menos 5 caracteres.",
   }),
-  rut: Joi.string().required().messages({
+  rut: Joi.string().required().pattern(/^[1-9][0-9]*-[0-9kK]{1}$/).min(9).max(10).messages({
     "string.empty": "El rut no puede estar vacío.",
     "any.required": "El rut es obligatorio.",
+    "string.pattern.base": "El rut proporcionado no es válido.",
     "string.base": "El rut debe ser de tipo string.",
+    "string.min": "El rut debe tener al menos 9 caracteres incluyendo guión, digito verificador.",
+    "string.max": "El rut debe tener maximo 10 caracteres incluyendo guión, digito verificador.",
   }),
   roles: Joi.array()
     .items(Joi.string().valid(...ROLES))
