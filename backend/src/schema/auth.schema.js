@@ -7,11 +7,10 @@ const Joi = require("joi");
  * @constant {Object}
  */
 const authLoginBodySchema = Joi.object({
-  email: Joi.string().email().required().messages({
-    "string.empty": "El email no puede estar vacío.",
-    "any.required": "El email es obligatorio.",
-    "string.base": "El email debe ser de tipo string.",
-    "string.email": "El email debe tener un formato válido.",
+  rut: Joi.string().required().messages({
+    "string.empty": "El rut no puede estar vacío.",
+    "any.required": "El rut es obligatorio.",
+    "string.base": "El rut debe ser de tipo string.",
   }),
   password: Joi.string().required().messages({
     "string.empty": "La contraseña no puede estar vacía.",
