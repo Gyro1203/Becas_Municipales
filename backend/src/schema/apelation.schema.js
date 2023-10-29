@@ -8,20 +8,24 @@ const Joi = require("joi");
  */
 
 const apelationBodySchema = Joi.object({
-    user: Joi.string().required().messages({
-        "string.empty": "El usuario no puede estar vacío.",
+    User: Joi.required().messages({
         "any.required": "El usuario es obligatorio.",
         "string.base": "El usuario debe ser de tipo string.",
     }),
-    apelacion: Joi.string().required().messages({
+    apelacion: Joi.string().required().alphanum().min(10).messages({
         "string.empty": "La apelación no puede estar vacía.",
         "any.required": "La apelación es obligatoria.",
         "string.base": "La apelación debe ser de tipo string.",
+        "string.min": "La apelación debe tener al menos 10 caracteres.",
     }),
     razon: Joi.string().required().messages({
         "string.empty": "La razón no puede estar vacía.",
         "any.required": "La razón es obligatoria.",
         "string.base": "La razón debe ser de tipo string.",
+    }),
+    fecha: Joi.date().iso().required().messages({
+        "any.required": "La fecha es obligatoria.",
+        "date.format": "El formato de la fecha es AÑO/MES/DIA",
     }),
 
     }).messages({

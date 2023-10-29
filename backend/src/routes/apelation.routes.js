@@ -20,8 +20,8 @@ router.use(authenticationMiddleware);
 router.get("/", apelationController.getApelations);
 router.post("/", apelationController.createApelation);
 router.get("/:id", apelationController.getApelationById);
-router.put("/:id", authorizationMiddleware.isAdmin, apelationController.updateApelationById);
-router.delete("/:id", authorizationMiddleware.isAdmin, apelationController.deleteApelationById);
+router.put("/:id", authorizationMiddleware.isPostulante, apelationController.updateApelationById);
+router.delete("/:id", authorizationMiddleware.isEncargado, apelationController.deleteApelationById);
  
 // Exporta el enrutador
 module.exports = router;

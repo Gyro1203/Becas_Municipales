@@ -21,7 +21,7 @@ async function getApelations(req, res) {
     resHandlers.respondSuccess(req, res, 200, apelations);
   } catch (error) {
     errorHandlers.handleError(error, "apelation.controller -> getApelations");
-    resHandlers.repondError(req, res, 400, error.message);
+    resHandlers.respondError(req, res, 400, error.message);
   } 
 }
 
@@ -64,18 +64,18 @@ async function createApelation(req, res) {
     try {
       const { params } = req;
       const { error: paramsError } = apelationIdSchema.validate(params);
-      if (paramsError) return repondError(req, res, 400, paramsError.message);
+      if (paramsError) return resHandlers.respondError(req, res, 400, paramsError.message);
   
-      const [apelation, error] = await ApelationServices.getApelationById(
+      const [apelation, error] = await ApelationServices.getApelationsById(
         params.id,
       );
-      if (error) return repondError(req, res, 400, error);
-      if (!apelation) return repondError(req, res, 400, "No existe esta apelacion");
+      if (error) return resHandlers.respondError(req, res, 400, error);
+      if (!apelation) return resHandlers.respondError(req, res, 400, "No existe esta apelacion");
   
-      respondSuccess(req, res, 200, apelation);
+      resHandlers.respondSuccess(req, res, 200, apelation);
     } catch (error) {
-      handleError(error, "apelation.controller -> getApelationById");
-      repondError(req, res, 500, "No se obtuvo la apelacion");
+      errorHandlers.handleError(error, "apelation.controller -> getApelationById");
+      resHandlers.respondError(req, res, 500, "No se obtuvo la apelacion");
     }
 }
 /**
@@ -89,22 +89,22 @@ async function updateApelationById(req, res) {
   try {
     const { params, body } = req;
     const { error: paramsError } = apelationIdSchema.validate(params);
-    if (paramsError) return repondError(req, res, 400, paramsError.message);
+    if (paramsError) return resHandlers.respondError(req, res, 400, paramsError.message);
 
     const { error: bodyError } = apelationBodySchema.validate(body);
-    if (bodyError) return repondError(req, res, 400, bodyError.message);
+    if (bodyError) return resHandlers.respondError(req, res, 400, bodyError.message);
 
-    const [apelation, error] = await ApelationServices.updateApelationById(
+    const [apelation, error] = await ApelationServices.updateApelationsById(
       params.id,
       body,
     );
-    if (error) return repondError(req, res, 400, error);
-    if (!apelation) return repondError(req, res, 400, "No existe la apelacion");
+    if (error) return resHandlers.respondError(req, res, 400, error);
+    if (!apelation) return resHandlers.respondError(req, res, 400, "No existe la apelacion");
 
-    respondSuccess(req, res, 200, apelation);
+    resHandlers.respondSuccess(req, res, 200, apelation);
   } catch (error) {
-    handleError(error, "apelation.controller -> updateApelationById");
-    repondError(req, res, 500, "No se actualizo la apelacion");
+    errorHandlers.handleError(error, "apelation.controller -> updateApelationById");
+   resHandlers.respondError(req, res, 500, "No se actualizo la apelacion");
   }
 }
 /**
@@ -118,18 +118,18 @@ async function deleteApelationById(req, res) {
   try {
     const { params } = req;
     const { error: paramsError } = apelationIdSchema.validate(params);
-    if (paramsError) return repondError(req, res, 400, paramsError.message);
+    if (paramsError) return resHandlers.respondError(req, res, 400, paramsError.message);
 
-    const [apelation, error] = await ApelationServices.deleteApelationById(
+    const [apelation, error] = await ApelationServices.deleteApelationsById(
       params.id,
     );
-    if (error) return repondError(req, res, 400, error);
-    if (!apelation) return repondError(req, res, 400, "No existe la apelacion");
+    if (error) return resHandlers.respondError(req, res, 400, error);
+    if (!apelation) return resHandlers.respondError(req, res, 400, "No existe la apelacion");
 
-    respondSuccess(req, res, 200, apelation);
+    resHandlers.respondSuccess(req, res, 200, apelation);
   } catch (error) {
-    handleError(error, "apelation.controller -> deleteApelationById");
-    repondError(req, res, 500, "No se elimino la apealacion");
+    errorHandlers.handleError(error, "apelation.controller -> deleteApelationById");
+    resHandlers.respondError(req, res, 500, "No se elimino la apealacion");
   }
 }
 

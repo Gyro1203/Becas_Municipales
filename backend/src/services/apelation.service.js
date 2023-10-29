@@ -10,7 +10,6 @@ async function getApelations() {
     try {
             const apelations = await Apelation.find()
                 .select("-password")
-                .populate("roles")
                 .exec();
             if (!apelations) return [null, "No hay apelaciones"];
             return [apelations, null];
@@ -25,11 +24,16 @@ async function getApelations() {
  */
 async function createApelations(apelation) {
     try {
-        const { user, apelacion, razon } = apelation;
+        const { User, apelacion, razon, fecha } = apelation;
+
+        const apelationFound = await Apelation.findOne({ User: apelation.User }).exec();
+        if (apelationFound) return [null, "Usted ya ha realizado una apelacion"];
+        
         const newApelation = new Apelation({
-            user,
+            User,
             apelacion,
             razon,
+            fecha,
         });
         await newApelation.save();
         return [newApelation, null];
@@ -60,10 +64,10 @@ async function getApelationsById(id) {
  */
 async function updateApelationsById(id, apelation) {
     try {
-        const { user, apelacion, razon } = apelation;
+        const { User, apelacion, razon } = apelation;
         const apelationFound = await Apelation.findById(id);
         if (!apelationFound) return [null, "La apelacion no existe"];
-        apelationFound.user = user;
+        apelationFound.User = User;
         apelationFound.apelacion = apelacion;
         apelationFound.razon = razon;
         await apelationFound.save();

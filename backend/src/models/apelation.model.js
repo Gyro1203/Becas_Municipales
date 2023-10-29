@@ -3,11 +3,12 @@
 const mongoose = require("mongoose");
 const apelationSchema = new mongoose.Schema(
     { 
-        user: {
+        User: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
-            required: true,
+            required: false,
         },
+    ],
         apelacion: {
             type: String,
             required: true,
@@ -16,6 +17,16 @@ const apelationSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        fecha: {
+            type: Date,
+            default: Date.now,
+            required: false,
+        },
+    });
+    
+    apelationSchema.pre("findOne", function(next) {
+        this.populate("User");
+        next();
     });
 
     const Apelation = mongoose.model("Apelation", apelationSchema);
