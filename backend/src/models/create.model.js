@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema(
     },
   },
   {
+    timestamps: { currentTime: ()=> Date.now() - 3 * 60 * 60 * 1000 },
     versionKey: false,
   },
 );
