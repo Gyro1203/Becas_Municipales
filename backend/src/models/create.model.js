@@ -2,7 +2,6 @@
 // Importa el modulo 'mongoose' para crear la conexion a la base de datos
 const mongoose = require("mongoose");
 
-
 // Crea el esquema de la coleccion 'Crear'
 const createSchema = new mongoose.Schema(
   {
@@ -21,7 +20,6 @@ const createSchema = new mongoose.Schema(
     versionKey: false,
   },
 );
-
 
 /** Modelo de datos 'Create' */
 const Create = mongoose.model("Create", createSchema);
