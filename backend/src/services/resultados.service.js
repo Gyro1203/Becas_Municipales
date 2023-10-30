@@ -74,9 +74,8 @@ async function getResultadosPendientes(){
     try {
         let postulacionesDisponibles = []
         const postulaciones = await Form.find(); // conseguir todas las postulaciones
-        console.log("postulaciones", postulaciones)
-        for(let i = 0; i < postulaciones; i ++){ // iterar y ver cual no esta guardada como resultado ya
-            const resultado = await Resultado.findById({ codigo_postulacion: postulaciones[i][_id]}).exec();
+        for(let i = 0; i < postulaciones.length; i++){ // iterar y ver cual no esta guardada como resultado ya
+            const resultado = await Resultado.findOne({ codigo_postulacion: postulaciones[i]["_id"].valueOf()}).exec();
             if(!resultado){
                 postulacionesDisponibles.push(postulaciones[i])
             }
@@ -84,8 +83,8 @@ async function getResultadosPendientes(){
         return [postulacionesDisponibles, null];
     } 
     catch (error) {
-    handleError(error, "resultados.service -> updateResultado");
-    return [null, "No hay resultado"];
+    handleError(error, "resultados.service -> getResultadosPendientes");
+    return [null, "Error al buscar postulaciones disponibles"];
 }
 }
 

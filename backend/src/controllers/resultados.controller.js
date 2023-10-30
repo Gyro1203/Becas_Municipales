@@ -111,7 +111,6 @@ async function updateResultado (req, res){
 async function getResultadosPendientes(req, res) {
   try{
     const [pendientes, postError] = await ResultadoService.getResultadosPendientes();
-    console.log(pendientes[0])
     if(!pendientes || pendientes.length === 0){
       respondError(req, res, 500, "No se encontraron postulaciones");
       return;
