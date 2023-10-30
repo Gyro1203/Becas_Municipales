@@ -25,6 +25,8 @@ const router = express.Router();
 router.use("/users", authenticationMiddleware, userRoutes);
 // Define las rutas para la autenticación /api/auth
 router.use("/auth", authRoutes);
+// Define la ruta para la apelacion /api/apelation
+router.use("/apelation", authenticationMiddleware, require("./apelation.routes.js"));
 
 router.use("/forms", authenticationMiddleware, formRoutes);
 
