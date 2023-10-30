@@ -42,7 +42,8 @@ async function getBecas(req, res) {
       handleError(error, "create.controller -> getBecas");
       respondError(req, res, 400, error.message);
     }
-  }
+}
+
 /**
  * Elimina beca existente
  */
