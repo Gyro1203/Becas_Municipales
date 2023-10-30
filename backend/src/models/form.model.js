@@ -28,13 +28,9 @@ const formSchema = new mongoose.Schema(
             type: String,
             require: true,
         },
-        date: {
-            type: Date,
-            default: Date.now() - 3 * 60 * 60 * 1000,
-            require: false,
-        },
     },
     {
+        timestamps: { currentTime: ()=> Date.now() - 3 * 60 * 60 * 1000 },
         versionKey: false,
     },
 );

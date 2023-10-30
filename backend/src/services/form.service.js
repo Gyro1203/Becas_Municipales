@@ -60,7 +60,7 @@ async function getFormById(id) {
  */
 async function createForm(form, rutUser) {
     try {
-        const { typeBeca, birthdate, address, handicap, date } = form;
+        const { typeBeca, birthdate, address, handicap } = form;
         const { username, rut } = await User.findOne({ rut: rutUser });
 
         const created = await Form.findOne({ typeBeca: form.typeBeca, rut: rutUser }).exec();
@@ -73,7 +73,6 @@ async function createForm(form, rutUser) {
             birthdate,
             address,
             handicap,
-            date, 
         });
         await newForm.save();
 
@@ -92,6 +91,7 @@ async function createForm(form, rutUser) {
 async function deleteForm(id, rutUser) {
   try {
     const form = await Form.findOne({ _id: id, rut: rutUser }).exec();
+    if (!form) return null;
     return await form.deleteOne();
   } catch (error) {
     handleError(error, "form.service -> deleteForm");
