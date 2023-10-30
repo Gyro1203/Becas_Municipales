@@ -5,6 +5,9 @@ const express = require("express");
 /** Enrutador de usuarios  */
 const userRoutes = require("./user.routes.js");
 
+/** Enrutador de resultados de postulaciones  */
+const resultadosRoute = require("./resultados.routes.js");
+
 /** Enrutador de autenticación */
 const authRoutes = require("./auth.routes.js");
 
@@ -18,6 +21,10 @@ const router = express.Router();
 router.use("/users", authenticationMiddleware, userRoutes);
 // Define las rutas para la autenticación /api/auth
 router.use("/auth", authRoutes);
+
+router.use("/forms", formRoutes);
+
+router.use("/resultados", resultadosRoute);
 
 // Exporta el enrutador
 module.exports = router;
