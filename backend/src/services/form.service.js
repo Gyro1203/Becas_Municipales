@@ -2,6 +2,7 @@
 
 const Form = require("../models/form.model.js");
 const User = require("../models/user.model.js");
+const Create = require("../models/create.model.js");
 const { handleError } = require("../utils/errorHandler");
 
 /**
@@ -62,6 +63,9 @@ async function createForm(form, rutUser) {
     try {
         const { typeBeca, birthdate, address, handicap } = form;
         const { username, rut } = await User.findOne({ rut: rutUser });
+
+        const exist = await Create.findOne({ typeBeca: form.typeBeca }).exec();
+        if (!exist) return [null, "La beca ingresada no es valida"];
 
         const created = await Form.findOne({ typeBeca: form.typeBeca, rut: rutUser }).exec();
         if (created) return [null, "No se permite mas de una postulación a una misma beca"];
