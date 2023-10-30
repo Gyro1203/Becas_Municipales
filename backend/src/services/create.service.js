@@ -1,29 +1,26 @@
 "use strict";
 // Importa el modelo de datos 'Create'
 const Create = require("../models/create.model.js");
-const Role = require("../models/role.model.js");
-const { handleError } = require("../utils/errorHandler");
+const { handleError } = require("../utils/errorHandler.js");
 
 
 /**
  * Crear nuevas becas
  */
-
   async function createBeca(beca) {
     try {
       const { typeBeca, descripcionBeca } = beca;
   
-      const createFound = await Create.findOne({ typeBeca : typeBeca })
+      const createFound = await Create.findOne({ typeBeca: beca.typeBeca });
       if (createFound) return [null, "La beca ya está registrada"];
   
       const newBeca = new Create({
         typeBeca,
-        descripcionBeca
+        descripcionBeca,
       });
       await newBeca.save();
   
       return [newBeca, null];
-      
     } catch (error) {
       handleError(error, "create.service -> createBeca");
     }
@@ -44,10 +41,8 @@ const { handleError } = require("../utils/errorHandler");
     }
 }
 
-
-  
   module.exports = {
     createBeca,
-    getBecas
+    getBecas,
   };
   
