@@ -16,11 +16,11 @@ const authenticationMiddleware = require("../middlewares/authentication.middlewa
 
 router.use(authenticationMiddleware);
 
-router.get("/", getResultados); // poner authorization en todos
-router.get("/:id", getResultadoById);
+router.get("/", authorizationMiddleware.isEncargado ,getResultados); // poner authorization en todos
+router.get("/:id", authorizationMiddleware.isEncargado, getResultadoById);
 
-router.post("/", createResultado);
-router.delete("/:id ", deleteResultado);
-router.patch("/:id ", updateResultado);
+router.post("/",authorizationMiddleware.isEncargado, createResultado);
+router.delete("/:id ", authorizationMiddleware.isEncargado, deleteResultado);
+router.patch("/:id ", authorizationMiddleware.isEncargado, updateResultado);
 
 module.exports = router;

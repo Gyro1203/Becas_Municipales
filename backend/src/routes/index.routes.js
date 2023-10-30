@@ -24,13 +24,9 @@ router.use("/users", authenticationMiddleware, userRoutes);
 // Define las rutas para la autenticación /api/auth
 router.use("/auth", authRoutes);
 
-<<<<<<< HEAD
-//router.use("/forms", formRoutes);
+router.use("/forms", formRoutes);
 
 router.use("/resultados", resultadosRoute);
-=======
-router.use("/forms", formRoutes);
->>>>>>> f8788b3dfe0a54b6233cf88e168c83dadc17e52e
 
 // Exporta el enrutador
 module.exports = router;

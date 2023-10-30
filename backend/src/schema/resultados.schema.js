@@ -14,12 +14,13 @@ const bodyResultadoSchema = Joi.object({
       "any.required": "El codigo de ostulacion es obligatorio.",
       "string.base": "El codigo de ostulacion debe ser de tipo string.",
     }),
-    fecha: Joi.date().min('1900-01-01').optional().messages({   // si no hay fecha presente usar la de hoy
+    fecha: Joi.date().default(() => new Date()).min('1900-01-01').optional().messages({   // si no hay fecha presente usar la de hoy
       "date.base": "La contraseña debe ser de tipo string.",
       "string.min": "La contraseña debe tener al menos 5 caracteres.",
     }),
     isAceptado: Joi.boolean().optional().messages({
-      "any.required": "El atributo aceptado es obligatorio."
+      "any.required": "El atributo aceptado es obligatorio.",
+      "boolean.base": "El atributo debe ser de tipo boolean.",
     }),
     razon: Joi.string().optional().min(10).max(250).messages({  
         "string.empty": "La razon no puede estar vacío.",
