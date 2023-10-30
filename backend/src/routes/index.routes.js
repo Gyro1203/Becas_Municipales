@@ -22,7 +22,7 @@ router.use("/users", authenticationMiddleware, userRoutes);
 // Define las rutas para la autenticación /api/auth
 router.use("/auth", authRoutes);
 
-router.use("/forms", formRoutes);
+//router.use("/forms", formRoutes);
 
 router.use("/resultados", resultadosRoute);
 
