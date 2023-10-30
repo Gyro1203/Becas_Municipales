@@ -13,10 +13,10 @@ const { handleError } = require("../utils/errorHandler");
     try {
       const { typeBeca, descripcionBeca } = beca;
   
-      const userFound = await User.findOne({ typeBeca : typeBeca })
-      if (userFound) return [null, "La beca ya está registrada"];
+      const createFound = await Create.findOne({ typeBeca : typeBeca })
+      if (createFound) return [null, "La beca ya está registrada"];
   
-      const newBeca = new Beca({
+      const newBeca = new Create({
         typeBeca,
         descripcionBeca
       });
@@ -28,7 +28,6 @@ const { handleError } = require("../utils/errorHandler");
       handleError(error, "create.service -> createBeca");
     }
   }
-
 
 
   /**
@@ -44,6 +43,8 @@ const { handleError } = require("../utils/errorHandler");
         handleError(error, "create.service -> getBecas");
     }
 }
+
+
   
   module.exports = {
     createBeca,
