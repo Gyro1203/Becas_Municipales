@@ -44,7 +44,9 @@ async function getBecas(req, res) {
     }
   }
 
+
+
   module.exports = {
     createBeca,
-    getBecas
-  }
+    getBecas,
+  };
