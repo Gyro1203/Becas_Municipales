@@ -3,27 +3,27 @@ const mongoose = require("mongoose");
 
 const resultadoSchema = new mongoose.Schema(
   {
-    codigo_postulacion:{
+    codigo_postulacion: {
       type: String,
-      required: true
+      required: true,
     },
     isAceptado:
     {
       type: Boolean,
-      required: true
+      required: true,
     },
-    razon:{
-      type:String,
-      required: false
+    razon: {
+      type: String,
+      required: false,
     },
-    fecha:{
+    fecha: {
       type: Date,
       default: new Date(),
-      required: true
-    }
+      required: true,
+    },
   },
   {
-    timestamps:true,
+    timestamps: true,
     versionKey: false,
   },
 );
