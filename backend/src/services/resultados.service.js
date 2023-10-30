@@ -5,7 +5,7 @@ const Form = require("../models/form.model.js");
 const { handleError } = require("../utils/errorHandler");
 
 /**
- * Obtiene las postulaciones que han sido enviadas
+ * crear nuevo resultado
  */
 async function createResultado(data) { // 👍
     try {
@@ -24,10 +24,10 @@ async function createResultado(data) { // 👍
       handleError(error, "resultados.service -> createResultado");
       return [null, "No se creo resultado"];
     }
-  }
+}
 
-  /**
- * Obtiene las postulaciones que han sido enviadas
+/**
+ * obtener todos los resultados
  */
 async function getResultados() { // 👍 
     try {
@@ -41,7 +41,7 @@ async function getResultados() { // 👍
 }
 
 /**
- * Obtiene las postulaciones que han sido enviadas
+ * obetener resultados por id
  */
 async function getResultadoById(id) {
     try {
@@ -55,7 +55,7 @@ async function getResultadoById(id) {
 }
 
 /**
- * Obtiene las postulaciones que han sido enviadas
+ * eliminar resultados
  */
 async function deleteResultado(id) {
     try {
@@ -69,7 +69,7 @@ async function deleteResultado(id) {
 }
 
 /**
- * Obtiene las postulaciones que han sido enviadas
+ * actualizar resultados
  */
 async function updateResultado(id, body) {
     try {
@@ -85,7 +85,7 @@ async function updateResultado(id, body) {
 }
 
 /**
- * Obtiene las postulaciones que han sido enviadas
+ * TO-DO mostrar resultados disponibles
  */
 async function getResultadosPendientes() {
     // todas las postulaciones que no estan revisadas
