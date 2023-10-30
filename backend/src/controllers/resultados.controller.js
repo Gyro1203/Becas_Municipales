@@ -6,7 +6,7 @@ const ResultadoService = require("../services/resultados.service");
 const { bodyResultadoSchema, idResultadoSchema } = require("../schema/resultados.schema");
 
 /**
- * crear todas las postulaciones
+ * crear nuevo resultado
  */
 async function createResultado(req, res) {
     try {
@@ -28,7 +28,7 @@ async function createResultado(req, res) {
 }
 
 /**
- * crear todas las postulaciones
+ * obetener resultados por id
  */
 async function getResultadoById(req, res) {
     try {
@@ -50,7 +50,7 @@ async function getResultadoById(req, res) {
 }
 
 /**
- * crear todas las postulaciones
+ * obtener todos los resultados
  */
 async function getResultados(req, res) {
   try {
@@ -66,7 +66,7 @@ async function getResultados(req, res) {
 }
 
 /**
- * crear todas las postulaciones
+ * eliminar resultados
  */
 async function deleteResultado(req, res) {
     try {
@@ -89,7 +89,7 @@ async function deleteResultado(req, res) {
 };
 
 /**
- * crear todas las postulaciones
+ * actualizar resultados
  */
 async function updateResultado(req, res) {
     try {
@@ -119,7 +119,7 @@ async function updateResultado(req, res) {
 }
 
 /**
- * TO-DO mostrar postulaciones disponibles
+ * TO-DO mostrar resultados disponibles
  */
 async function getResultadosPendientes(req, res) {
   try {
