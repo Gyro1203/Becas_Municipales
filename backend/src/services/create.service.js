@@ -41,8 +41,7 @@ const { handleError } = require("../utils/errorHandler.js");
     }
 }
 
-  module.exports = {
-    createBeca,
-    getBecas,
-  };
-  
+module.exports = {
+  createBeca,
+  getBecas,
+};
