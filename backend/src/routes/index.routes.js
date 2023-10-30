@@ -30,7 +30,7 @@ router.use("/apelation", authenticationMiddleware, require("./apelation.routes.j
 
 router.use("/forms", authenticationMiddleware, formRoutes);
 
-router.use("/resultados", resultadosRoute);
+router.use("/resultados", authenticationMiddleware, resultadosRoute);
 router.use("/create", authenticationMiddleware, createRoutes);
 
 // Exporta el enrutador
