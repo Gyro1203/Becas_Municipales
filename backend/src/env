@@ -1,0 +1,5 @@
+PORT=5000
+HOST=localhost
+DB_URL=mongodb+srv://Becas:Municipales@becas.rag6bpn.mongodb.net/?retryWrites=true&w=majority
+ACCESS_JWT_SECRET=becas
+REFRESH_JWT_SECRET=municipales
