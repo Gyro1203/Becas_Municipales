@@ -2,8 +2,9 @@
 // importa el modelo de datos apelation
 const Apelation = require("../models/apelation.model.js");
 const { handleError } = require("../utils/errorHandler");
+const User = require("../models/user.model.js");
 /**
- * Obtiene todos los apelaciones de la base de datos
+ * Obtiene todos las apelaciones de la base de datos
  * @returns {Promise} Promesa con el objeto de los apelations
  */
 async function getApelations() {
@@ -18,22 +19,23 @@ async function getApelations() {
     }
 }
 /**
- * Crea un nuevo apelation en la base de datos
+ * Crea una nueva apelacion en la base de datos
  * @param {Object} apelation Objeto de apelation
  * @returns {Promise} Promesa con el objeto de apelation creado
  */
-async function createApelations(apelation) {
+async function createApelations( rutuser, apelation) {
     try {
-        const { User, apelacion, razon, fecha } = apelation;
-
-        const apelationFound = await Apelation.findOne({ User: apelation.User }).exec();
+        const { apelacion, razon, fecha, estado } = apelation;
+        const { username, rut } = await User.findOne({ rut: rutuser }).exec(); 
+        const apelationFound = await Apelation.findOne({ rut: rutuser }).exec();
         if (apelationFound) return [null, "Usted ya ha realizado una apelacion"];
-        
         const newApelation = new Apelation({
-            User,
+            username,
+            rut,
             apelacion,
             razon,
             fecha,
+            estado,
         });
         await newApelation.save();
         return [newApelation, null];
@@ -55,6 +57,20 @@ async function getApelationsById(id) {
         handleError(error, "apelation.service -> getApelationById");
     }
 }   
+/**
+ * Filtra las apelaciones por rut
+ * @param {String} rutuser
+ * @returns 
+ */
+async function getApelationsByRut(rutuser) {
+    try {
+        const apelation = await Apelation.findOne({ rut: rutuser }).exec();
+        if (!apelation) return [null, "La apelacion no existe"];
+        return [apelation, null];
+    } catch (error) {
+        handleError(error, "apelation.service -> getApelationByRut");
+    }
+}
 
 /**
  * Actualiza un apelation por su id de la base de datos
@@ -64,12 +80,10 @@ async function getApelationsById(id) {
  */
 async function updateApelationsById(id, apelation) {
     try {
-        const { User, apelacion, razon } = apelation;
+        const { estado } = apelation;
         const apelationFound = await Apelation.findById(id);
         if (!apelationFound) return [null, "La apelacion no existe"];
-        apelationFound.User = User;
-        apelationFound.apelacion = apelacion;
-        apelationFound.razon = razon;
+        apelationFound.estado = estado;
         await apelationFound.save();
         return [apelationFound, null];
     } catch (error) {
@@ -80,6 +94,21 @@ async function updateApelationsById(id, apelation) {
  * Elimina un apelation por su id de la base de datos
  * @param {string} Id del apelation
  * @returns {Promise} Promesa con el objeto de apelation eliminado
+ */
+async function deleteApelationsUsers(id, rutuser) {
+    try {
+        const apelationFound = await Apelation.findOne( { _id: id, rut: rutuser } ).exec();
+        if (!apelationFound) return [null, "La apelacion no existe"];
+        await Apelation.deleteOne({ _id: id });
+        return [apelationFound, null];
+    } catch (error) {
+        handleError(error, "apelation.service -> deleteApelationUsers");
+    }
+}
+/**
+ * Elimina cualquier apelacion por su id de la base de datos
+ * @param {string} id de la apelacion
+ * @returns 
  */
 async function deleteApelationsById(id) {
     try {
@@ -95,7 +124,9 @@ async function deleteApelationsById(id) {
 module.exports = {
     getApelations,
     createApelations,
+    getApelationsByRut,
     getApelationsById,
     updateApelationsById,
     deleteApelationsById,
+    deleteApelationsUsers,
 };

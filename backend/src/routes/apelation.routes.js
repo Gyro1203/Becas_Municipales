@@ -17,11 +17,18 @@ const router = express.Router();
 router.use(authenticationMiddleware);
 
 // Define las rutas para los apelations
+
 router.get("/", apelationController.getApelations);
-router.post("/", apelationController.createApelation);
+router.get("/MyApelacion", authorizationMiddleware.isPostulante,
+ apelationController.getApelationByRut);
+router.post("/", authorizationMiddleware.isPostulante, apelationController.createApelation);
 router.get("/:id", apelationController.getApelationById);
-router.put("/:id", authorizationMiddleware.isPostulante, apelationController.updateApelationById);
+router.put("/:id", authorizationMiddleware.isEncargado, apelationController.updateApelationById);
+router.delete("/MiApelacion/:id",
+authorizationMiddleware.isPostulante,
+apelationController.deleteApelationUsers);
 router.delete("/:id", authorizationMiddleware.isEncargado, apelationController.deleteApelationById);
+
  
 // Exporta el enrutador
 module.exports = router;

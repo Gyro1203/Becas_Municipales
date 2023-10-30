@@ -8,11 +8,15 @@ const Joi = require("joi");
  */
 
 const apelationBodySchema = Joi.object({
-    User: Joi.required().messages({
+    username: Joi.forbidden().messages({
         "any.required": "El usuario es obligatorio.",
         "string.base": "El usuario debe ser de tipo string.",
     }),
-    apelacion: Joi.string().required().alphanum().min(10).messages({
+    rut: Joi.forbidden().messages({
+        "any.required": "El rut es obligatorio.",
+        "string.base": "El rut debe ser de tipo string.",
+    }),
+    apelacion: Joi.string().required().min(10).messages({
         "string.empty": "La apelación no puede estar vacía.",
         "any.required": "La apelación es obligatoria.",
         "string.base": "La apelación debe ser de tipo string.",
@@ -25,9 +29,12 @@ const apelationBodySchema = Joi.object({
     }),
     fecha: Joi.date().iso().required().messages({
         "any.required": "La fecha es obligatoria.",
-        "date.format": "El formato de la fecha es AÑO/MES/DIA",
+        "date.format": "El formato de la fecha es AÑO-MES-DIA",
     }),
-
+    estado: Joi.boolean().forbidden().messages({
+        "boolean.base": "El estado debe ser de tipo boolean.",
+        "any.required": "El estado es obligatorio.",
+    }),
     }).messages({
     "object.unknown": "No se permiten propiedades adicionales." });
 
@@ -43,7 +50,40 @@ const apelationIdSchema = Joi.object({
         }),
 });
 
+const apelationStatus = Joi.object({
+    username: Joi.forbidden().messages({
+        "any.required": "El usuario es obligatorio.",
+        "string.base": "El usuario debe ser de tipo string.",
+    }),
+    rut: Joi.forbidden().messages({
+        "any.required": "El rut es obligatorio.",
+        "string.base": "El rut debe ser de tipo string.",
+    }),
+    apelacion: Joi.string().forbidden().min(10).messages({
+        "string.empty": "La apelación no puede estar vacía.",
+        "any.required": "La apelación es obligatoria.",
+        "string.base": "La apelación debe ser de tipo string.",
+        "string.min": "La apelación debe tener al menos 10 caracteres.",
+    }),
+    razon: Joi.string().forbidden().messages({
+        "string.empty": "La razón no puede estar vacía.",
+        "any.required": "La razón es obligatoria.",
+        "string.base": "La razón debe ser de tipo string.",
+    }),
+    fecha: Joi.date().iso().forbidden().messages({
+        "any.required": "La fecha es obligatoria.",
+        "date.format": "El formato de la fecha es AÑO-MES-DIA",
+    }),
+    estado: Joi.boolean().required().messages({
+        "boolean.base": "El estado debe ser de tipo boolean.",
+        "any.required": "El estado es obligatorio.",
+    }),
+
+    }).messages({
+    "object.unknown": "No se permiten propiedades adicionales." });
+
 module.exports = { 
     apelationBodySchema,
     apelationIdSchema,
+    apelationStatus,
 };

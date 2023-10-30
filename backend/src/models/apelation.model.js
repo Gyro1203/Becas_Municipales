@@ -3,12 +3,14 @@
 const mongoose = require("mongoose");
 const apelationSchema = new mongoose.Schema(
     { 
-        User: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            required: false,
+        username: {
+            type: String,
+            required: true,
         },
-    ],
+        rut: {
+            type: String,
+            required: true,
+        },
         apelacion: {
             type: String,
             required: true,
@@ -19,15 +21,19 @@ const apelationSchema = new mongoose.Schema(
         },
         fecha: {
             type: Date,
-            default: Date.now,
             required: false,
         },
-    });
-    
-    apelationSchema.pre("findOne", function(next) {
-        this.populate("User");
-        next();
-    });
+        estado: {
+            type: Boolean,
+            default: false,
+            required: true,
+        },
+    },
+    {
+        timestamps: { currentTime: ()=> Date.now() - 3 * 60 * 60 * 1000 },
+        versionKey: false,
+    },
+    );
 
     const Apelation = mongoose.model("Apelation", apelationSchema);
 
