@@ -108,19 +108,27 @@ async function updateResultado (req, res){
 }
 
 // TO-DO mostrar postulaciones disponibles
-
-async function getPostulaciones (req, res){
-  try {
-  
-  }catch{
-
+async function getResultadosPendientes(req, res) {
+  try{
+    const [pendientes, postError] = await ResultadoService.getResultadosPendientes();
+    console.log(pendientes[0])
+    if(!pendientes || pendientes.length === 0){
+      respondError(req, res, 500, "No se encontraron postulaciones");
+      return;
+    }
+    respondSuccess(req, res, 201, pendientes);
+  }catch (error) {
+    handleError(error, "resultados.controller -> getResultadosPendientes");
+    respondError(req, res, 500, "Error al buscar postulaciones");
   }
 }
+
 
 module.exports = {
     createResultado,
     getResultados,
     getResultadoById,
     deleteResultado,
-    updateResultado
+    updateResultado,
+    getResultadosPendientes
   };

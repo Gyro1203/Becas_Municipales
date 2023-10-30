@@ -1,6 +1,7 @@
 "use strict";
 
 const Resultado = require("../models/resultados.model.js");
+const Form = require("../models/form.model.js");
 const { handleError } = require("../utils/errorHandler");
 
 async function createResultado(data) {   // 👍
@@ -56,8 +57,6 @@ async function deleteResultado(id) {
 
 async function updateResultado(id, body) {
     try {
-
-
         const resUpdated = await Resultado.findOneAndUpdate({ _id: id },{ $set: body },{ new: true });
 
         if (!resUpdated) return [null, "No se encontro resultado"];
@@ -69,11 +68,33 @@ async function updateResultado(id, body) {
 
 }
 
+async function getResultadosPendientes(){
+    // todas las postulaciones que no estan revisadas
+    // todos los codigos de postulacion que no estan en Resultado (mongoose collection)
+    try {
+        let postulacionesDisponibles = []
+        const postulaciones = await Form.find(); // conseguir todas las postulaciones
+        console.log("postulaciones", postulaciones)
+        for(let i = 0; i < postulaciones; i ++){ // iterar y ver cual no esta guardada como resultado ya
+            const resultado = await Resultado.findById({ codigo_postulacion: postulaciones[i][_id]}).exec();
+            if(!resultado){
+                postulacionesDisponibles.push(postulaciones[i])
+            }
+        }
+        return [postulacionesDisponibles, null];
+    } 
+    catch (error) {
+    handleError(error, "resultados.service -> updateResultado");
+    return [null, "No hay resultado"];
+}
+}
+
 
 module.exports = {
     createResultado,
     getResultados,
     getResultadoById,
     deleteResultado,
-    updateResultado
+    updateResultado,
+    getResultadosPendientes
 }

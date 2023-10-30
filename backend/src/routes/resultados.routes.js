@@ -6,6 +6,7 @@ createResultado,
 getResultadoById,
 deleteResultado,
 getResultados,
+getResultadosPendientes,
 updateResultado} = require("../controllers/resultados.controller.js");
 
 /** Middlewares de autorización */
@@ -16,6 +17,7 @@ const authenticationMiddleware = require("../middlewares/authentication.middlewa
 
 router.use(authenticationMiddleware);
 
+router.get("/postulaciones", getResultadosPendientes)
 router.get("/", authorizationMiddleware.isEncargado ,getResultados); // poner authorization en todos
 router.get("/:id", authorizationMiddleware.isEncargado, getResultadoById);
 
