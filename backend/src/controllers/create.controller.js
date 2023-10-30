@@ -12,7 +12,7 @@ async function createBeca(req, res) {
     try {
         const { body } = req;
     
-        const [newBeca, createError] = await FormService.createBeca(body);
+        const [newBeca, createError] = await CreateService.createBeca(body);
     
         if (createError) return respondError(req, res, 400, createError);
         if (!newBeca) {
@@ -35,7 +35,7 @@ async function getBecas(req, res) {
       const [becas, errorBecas] = await CreateService.getBecas();
       if (errorBecas) return respondError(req, res, 404, errorBecas);
   
-      usuarios.length === 0
+      becas.length === 0
         ? respondSuccess(req, res, 204)
         : respondSuccess(req, res, 200, becas);
     } catch (error) {
@@ -44,9 +44,7 @@ async function getBecas(req, res) {
     }
   }
 
-
-
-  module.exports = {
-    createBeca,
-    getBecas,
-  };
+module.exports = {
+  createBeca,
+  getBecas,
+};
