@@ -9,9 +9,9 @@ const createController = require("../controllers/create.controller.js");
 const router = express.Router();
 
 // Define las rutas para la autenticación
-router.post("/createBeca", createController.createBeca);
-router.post("/getBecas", createController.createBeca);
 router.post("/", authorizationMiddleware.isEncargado, createController.createBeca);
+router.get("/", createController.getBecas);
+
 
 // Exporta el enrutador
 module.exports = router;
