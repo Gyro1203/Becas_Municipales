@@ -11,14 +11,14 @@ const { handleError } = require("../utils/errorHandler");
 
   async function createBeca(beca) {
     try {
-      const { nameBeca, typeBeca } = beca;
+      const { typeBeca, descripcionBeca } = beca;
   
-      const userFound = await User.findOne({ nameBeca : nameBeca })
+      const userFound = await User.findOne({ typeBeca : typeBeca })
       if (userFound) return [null, "La beca ya está registrada"];
   
       const newBeca = new Beca({
-        nameBeca,
         typeBeca,
+        descripcionBeca
       });
       await newBeca.save();
   
@@ -36,7 +36,7 @@ const { handleError } = require("../utils/errorHandler");
    */
   async function getBecas() {
     try {
-        const becas = await Beca.find().exec();
+        const becas = await Create.find().exec();
         if (!becas) return [null, "No existen becas registradas"];
 
         return [becas, null];

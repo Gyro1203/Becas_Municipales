@@ -7,12 +7,12 @@ const bcrypt = require("bcryptjs");
 // Crea el esquema de la coleccion 'Crear'
 const userSchema = new mongoose.Schema(
   {
-    nameBeca: {
+    typeBeca: {
       type: String,
       required: true,
       unique: true,
     },
-    typeBeca: {
+    descripcionBeca: {
       type: String,
       required: true,
     },
