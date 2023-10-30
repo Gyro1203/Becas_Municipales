@@ -8,8 +8,13 @@ deleteResultado,
 getResultados,
 updateResultado} = require("../controllers/resultados.controller.js");
 
+/** Middlewares de autorización */
+const authorizationMiddleware = require("../middlewares/authorization.middleware.js");
 
+/** Middleware de autenticación */
+const authenticationMiddleware = require("../middlewares/authentication.middleware.js");
 
+router.use(authenticationMiddleware);
 
 router.get("/", getResultados); // poner authorization en todos
 router.get("/:id", getResultadoById);
