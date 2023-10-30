@@ -77,7 +77,7 @@ async function getResultadosPendientes(){
         for(let i = 0; i < postulaciones.length; i++){ // iterar y ver cual no esta guardada como resultado ya
             const resultado = await Resultado.findOne({ codigo_postulacion: postulaciones[i]["_id"].valueOf()}).exec();
             if(!resultado){
-                postulacionesDisponibles.push(postulaciones[i])
+                postulacionesDisponibles.push(postulaciones[i]);
             }
         }
         return [postulacionesDisponibles, null];
