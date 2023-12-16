@@ -11,6 +11,7 @@ export const login = async ({ rut, password }) => {
     const { status, data } = response;
     if (status === 200) {
       const { rut, roles } = await jwtDecode(data.data.accessToken);
+      console.log("roles", roles)
       localStorage.setItem('user', JSON.stringify({ rut, roles }));
       axios.defaults.headers.common[
         'Authorization'
