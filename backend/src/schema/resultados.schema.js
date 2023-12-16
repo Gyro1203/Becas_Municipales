@@ -18,17 +18,19 @@ const bodyResultadoSchema = Joi.object({
       "date.base": "La fecha debe ser de tipo string.",
       "date.min": "La fecha no debe ser anterior al 01/01/1900.",
     }),
-    isAceptado: Joi.boolean().optional().messages({
-      "any.required": "El atributo aceptado es obligatorio.",
+    isAceptado: Joi.boolean().required().messages({
+      "any.required": "El atributo isAceptado es obligatorio.",
       "boolean.base": "El atributo debe ser de tipo boolean.",
     }),
-    razon: Joi.string().optional().min(10).max(250).messages({  
+    razon: Joi.when('isAceptado',{
+      is: false,
+      then: Joi.string().required().min(10).max(250).messages({  
         "string.empty": "La razon no puede estar vacío.",
         "any.required": "La razon es obligatorio.",
         "string.base": "La razon debe ser de tipo string.",
         "string.min": "La razon debe tener al menos 10 caracteres.",
         "string.max": "La razon debe tener como maximo 250 caracteres.",
-    }),
+      }) }),
   }).messages({
     "object.unknown": "No se permiten propiedades adicionales.",
   });
