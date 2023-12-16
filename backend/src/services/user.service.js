@@ -45,7 +45,6 @@ async function createUser(user) {
       roles: myRole,
     });
     await newUser.save();
-    console.log(newUser);
 
     return [newUser, null];
   } catch (error) {
