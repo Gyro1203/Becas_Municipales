@@ -20,9 +20,9 @@ function LoginForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input
-        name="email"
-        type="email"
-        {...register('email', { required: true })}
+        name="rut"
+        type="string"
+        {...register('rut', { required: true })}
       />
       <input
         type="password"

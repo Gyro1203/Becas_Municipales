@@ -2,16 +2,16 @@ import axios from './root.service';
 import cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 
-export const login = async ({ email, password }) => {
+export const login = async ({ rut, password }) => {
   try {
     const response = await axios.post('auth/login', {
-      email,
+      rut,
       password,
     });
     const { status, data } = response;
     if (status === 200) {
-      const { email, roles } = await jwtDecode(data.data.accessToken);
-      localStorage.setItem('user', JSON.stringify({ email, roles }));
+      const { rut, roles } = await jwtDecode(data.data.accessToken);
+      localStorage.setItem('user', JSON.stringify({ rut, roles }));
       axios.defaults.headers.common[
         'Authorization'
       ] = `Bearer ${data.data.accessToken}`;
