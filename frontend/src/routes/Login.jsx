@@ -1,4 +1,5 @@
 import LoginForm from '../components/LoginForm';
+import NavBar from '../components/NavBar';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -7,6 +8,7 @@ function Login() {
   if (localStorage.getItem('user')) {
     return (
       <>
+        <NavBar />
         <h2>Ya estas logeado!</h2>
         <button onClick={() => navigate('/')}>Ir a home</button>
       </>
