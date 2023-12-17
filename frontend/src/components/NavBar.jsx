@@ -13,7 +13,7 @@ function NavBar() {
                         <button onClick={() => navigate('/')}>HOME</button>
                     </li>
                     <li>
-                        <button onClick={() => navigate('/main')}>MAIN</button>
+                        <button onClick={() => navigate('/Forms')}>POSTULAR</button>
                     </li>
                 </ul>
             </nav>
