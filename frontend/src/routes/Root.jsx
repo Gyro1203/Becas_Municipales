@@ -22,17 +22,21 @@ function PageRoot() {
   };
 
   const { user } = useAuth();
-
-  return (
-    <div>
+  
+  if(user && user.roles[0]){
+    return (
       <div>
-        <h1>Aqui deberia ir un header</h1>
-        <p>Estas logeado como: {user.roles[0]["name"]}</p>
-        <button onClick={handleLogout}>Cerrar sesion</button>
+        <div>
+          <h1>Aqui deberia ir un header</h1>
+          <p>Estas logeado como: {user.roles[0]["name"]}</p>
+          <button onClick={handleLogout}>Cerrar sesion</button>
+        </div>
+        <Outlet />
       </div>
-      <Outlet />
-    </div>
-  );
+    );}
+    else{
+      return <></>;
+    }
 }
 
 export default Root;
