@@ -2,10 +2,12 @@ import { Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../services/auth.service';
 import { AuthProvider, useAuth } from '../context/AuthContext';
+import NavBar from '../components/NavBar';
 
 function Root() {
   return (
     <AuthProvider>
+      <NavBar />
       <PageRoot />
     </AuthProvider>
   );

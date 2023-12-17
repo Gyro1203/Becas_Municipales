@@ -9,8 +9,12 @@ function NavBar() {
             <nav>
                 <h1>LOGO</h1>
                 <ul>
-                    <li><a onClick={() => navigate('/')}>HOME</a></li>
-                    <li><a onClick={() => navigate('/main')}>MAIN</a></li>
+                    <li>
+                        <button onClick={() => navigate('/')}>HOME</button>
+                    </li>
+                    <li>
+                        <button onClick={() => navigate('/main')}>MAIN</button>
+                    </li>
                 </ul>
             </nav>
         </header>
