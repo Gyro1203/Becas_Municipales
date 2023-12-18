@@ -1,4 +1,4 @@
-import PostulacionForm from "../components/PostulacionForm";
+import PostulacionForm from "../../components/PostulacionForm";
 
 function Postular() {
     return (
