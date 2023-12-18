@@ -27,6 +27,7 @@ function PageRoot() {
     <Container>
       <AppBar position='static' >
         <Toolbar>
+          <img src="https://www.movilh.cl/wp-content/uploads/2016/05/conce.jpg"/>
           <Typography variant='h6' sx={{flexGrow: 1}}>BECAS MUNICIPALES</Typography>
           <header>
             <Button color='inherit' onClick={() => navigate('/')}>

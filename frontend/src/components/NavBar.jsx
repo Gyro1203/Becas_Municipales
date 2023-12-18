@@ -9,6 +9,7 @@ function NavBar() {
         <Container>
         <AppBar position='static' >
             <Toolbar>
+                <img src="https://permisodecirculacion.cl/wp-content/uploads/2020/03/Muncipalidad_de_Concepcion-1024x769-1-300x225.png" alt="" />
                 <Typography variant='h6' sx={{flexGrow: 1}}>BECAS MUNICIPALES</Typography>
                 <header>
                     <Button color='inherit' onClick={() => navigate('/main')}>

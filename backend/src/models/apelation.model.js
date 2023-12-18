@@ -23,11 +23,13 @@ const apelationSchema = new mongoose.Schema(
             type: Date,
             required: false,
         },
-        estado: {
-            type: Boolean,
-            default: false,
-            required: true,
-        },
+        estado: [{
+
+            type: String,
+            enum: ["Aceptada", "Rechazada", "En revisión"],
+            default: "En revisión",
+        },    
+        ],
     },
     {
         timestamps: { currentTime: ()=> Date.now() - 3 * 60 * 60 * 1000 },
