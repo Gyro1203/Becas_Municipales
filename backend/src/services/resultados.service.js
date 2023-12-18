@@ -88,6 +88,7 @@ async function updateResultado(id, body) {
  * TO-DO mostrar resultados disponibles
  */
 async function getResultadosPendientes() {
+    console.log("asdasd");
     // todas las postulaciones que no estan revisadas
     // todos los codigos de postulacion que no estan en Resultado (mongoose collection)
     try {
