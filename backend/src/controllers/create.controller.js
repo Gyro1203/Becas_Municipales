@@ -16,13 +16,13 @@ async function createBeca(req, res) {
     
         if (createError) return respondError(req, res, 400, createError);
         if (!newBeca) {
-          return respondError(req, res, 400, "No se creo la postulación");
+          return respondError(req, res, 400, "No se creo la beca");
         }
     
         respondSuccess(req, res, 201, newBeca);
       } catch (error) {
         handleError(error, "create.controller -> getBecas");
-        respondError(req, res, 500, "No se creo la postulación");
+        respondError(req, res, 500, "No se creo la beca");
       }
 }
 
@@ -44,7 +44,21 @@ async function getBecas(req, res) {
     }
   }
 
+
+/**
+ * Mostrar becas existentes
+ */
+async function getBecasVencidas(req, res) {
+  try {
+    const elementos = await CreateService.getBecasVencidas();
+    res.json(elementos);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
 module.exports = {
   createBeca,
   getBecas,
+  getBecasVencidas,
 };

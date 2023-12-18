@@ -17,6 +17,16 @@ const createBodySchema = Joi.object({
     "any.required": "Ladescipcion de la beca es obligatoria.",
     "string.base": "La descipcion de la beca debe ser de tipo string.",
   }),
+  vencimientoBeca: Joi.date().required()
+    .min("1900/1/1")
+    .max(Date().now.getFullYear() + 5, 11, 31)
+    .messages({
+      "date.empty": "La fecha de vencimiento no puede estar vacía.",
+      "any.required": "La fecha de vencimiento es obligatoria.",
+      "date.base": "La fecha de vencimiento debe ser de tipo date.",
+      "date.min": "La fecha de vencimiento no puede ser anterior a 1900.",
+      "date.max": "La fecha máx de vencimiento es de 5 años.",
+  }),
 }).messages({
   "object.unknown": "No se permiten propiedades adicionales.",
 });

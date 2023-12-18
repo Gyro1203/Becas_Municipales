@@ -15,6 +15,10 @@ const createSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    vencimientoBeca: {
+      type: Date,
+      required: true,
+    },
   },
   {
     timestamps: { currentTime: ()=> Date.now() - 3 * 60 * 60 * 1000 },

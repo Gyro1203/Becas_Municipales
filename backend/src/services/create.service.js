@@ -41,7 +41,22 @@ const { handleError } = require("../utils/errorHandler.js");
     }
 }
 
+
+  /**
+   * Becas Vencidas
+   */
+async function getBecasVencidas() {
+  const fechaActual = new Date();
+  try {
+    const becasVencidas = await Create.find({ vencimientoBeca: { $lt: fechaActual } });
+    return becasVencidas;
+  } catch (error) {
+    handleError(error, "create.service -> getBecasVencidas");
+  }
+}
+
 module.exports = {
   createBeca,
   getBecas,
+  getBecasVencidas,
 };
