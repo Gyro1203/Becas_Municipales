@@ -16,13 +16,13 @@ async function createBeca(req, res) {
     
         if (createError) return respondError(req, res, 400, createError);
         if (!newBeca) {
-          return respondError(req, res, 400, "No se creo la postulación");
+          return respondError(req, res, 400, "No se creo la beca");
         }
     
         respondSuccess(req, res, 201, newBeca);
       } catch (error) {
         handleError(error, "create.controller -> getBecas");
-        respondError(req, res, 500, "No se creo la postulación");
+        respondError(req, res, 500, "No se creo la beca");
       }
 }
 
