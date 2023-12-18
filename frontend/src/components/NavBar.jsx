@@ -1,23 +1,26 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Container, AppBar, IconButton, Toolbar, Button, Typography } from '@mui/material';
 
 function NavBar() {
 
     const navigate = useNavigate();
 
     return(
-        <header>
-            <nav>
-                <h1>LOGO</h1>
-                <ul>
-                    <li>
-                        <button onClick={() => navigate('/')}>HOME</button>
-                    </li>
-                    <li>
-                        <button onClick={() => navigate('/Forms')}>POSTULAR</button>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+        <Container>
+        <AppBar position='static' >
+            <Toolbar>
+                <Typography variant='h6' sx={{flexGrow: 1}}>BECAS MUNICIPALES</Typography>
+                <header>
+                    <Button color='inherit' onClick={() => navigate('/main')}>
+                        HOME
+                    </Button>
+                    <Button color='inherit' onClick={() => navigate('/Forms')}>
+                        POSTULAR
+                    </Button>
+                </header>
+            </Toolbar>
+        </AppBar>
+        </Container>
     );
 }
 

@@ -7,6 +7,11 @@ import ErrorPage from './routes/ErrorPage.jsx';
 import Login from './routes/Login.jsx';
 import Postulacion from './routes/Postulacion.jsx';
 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -17,16 +22,15 @@ const router = createBrowserRouter([
         path: '/',
         element: <App />,
       },
-      
+      {
+        path: '/Forms',
+        element: <Postulacion />
+      },
     ],
   },
   {
     path: '/auth',
     element: <Login />,
-  },
-  {
-    path: '/Forms',
-    element: <Postulacion />
   },
 ]);
 
