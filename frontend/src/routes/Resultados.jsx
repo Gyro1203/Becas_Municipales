@@ -145,9 +145,50 @@ const Resultados = () => {
         <></>
     )
         }
+    <MostrarResultados/>
     </>
     );
 
+}
+
+const MostrarResultados = () => {
+    const [resultados, setResultados] = useState([]);
+
+    useEffect(() => {
+        instance.get('/resultados/')
+        .then((response) => {
+            const res = response;
+            setResultados(res.data.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    },[])
+
+
+    
+    return(
+    <>
+    <h1>Resultados Postulaciones</h1>
+    <List >
+        <ListItem sx={{backgroundColor: '#1A4669'}}>
+            <ListItemText sx={{ flexBasis: '10%' }}>N°</ListItemText>
+            <ListItemText sx={{ flexBasis: '30%' }}>Codigo</ListItemText>
+            <ListItemText sx={{ flexBasis: '10%' }}>Aceptado</ListItemText>
+            <ListItemText sx={{ flexBasis: '30%' }}>Fecha</ListItemText>
+        </ListItem>
+    {resultados?.map((resultado, index) => (
+        <ListItem ListItem sx={{backgroundColor: 'grey'}}>
+            <ListItemText sx={{ flexBasis: '10%' }}>{index+1}</ListItemText>
+            <ListItemText sx={{ flexBasis: '30%' }}>{resultado.codigo_postulacion}</ListItemText>
+            <ListItemText sx={{ flexBasis: '10%' }}>{resultado.isAceptado.toString()}</ListItemText>
+            <ListItemText sx={{ flexBasis: '30%' }}>{resultado.createdAt.split("T")[0]}</ListItemText>
+
+        </ListItem>
+    ))}
+    </List>
+    </>
+    );
 }
 
 export default Resultados;
