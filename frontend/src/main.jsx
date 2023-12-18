@@ -6,6 +6,8 @@ import Root from './routes/Root.jsx';
 import ErrorPage from './routes/ErrorPage.jsx';
 import Login from './routes/Login.jsx';
 import Resultados from './routes/Resultados.jsx';
+import {ThemeProvider} from '@mui/material/styles';
+
 
 
 const router = createBrowserRouter([
@@ -26,7 +28,10 @@ const router = createBrowserRouter([
   },
   {
     path: '/resultados',
-    element: <Resultados />,
+    element: 
+
+        <Resultados />
+      
   },
   {
     path: '/main',
