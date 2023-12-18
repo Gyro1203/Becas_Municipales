@@ -13,7 +13,7 @@ import Postulaciones from './routes/Postulaciones/Postulaciones.jsx';
 import Postular from './routes/Postulaciones/Postular.jsx';
 import Detalles from './routes/Postulaciones/Detalles.jsx';
 import MisPostulaciones from './routes/Postulaciones/MisPostulaciones.jsx';
-
+import Resultados from './routes/Resultados.jsx';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +46,17 @@ const router = createBrowserRouter([
   {
     path: '/auth',
     element: <Login />,
+  },
+  {
+    path: '/resultados',
+    element: 
+
+        <Resultados />
+      
+  },
+  {
+    path: '/main',
+    element: <App />,
   },
 ]);
 

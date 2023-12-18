@@ -122,9 +122,11 @@ async function updateResultado(req, res) {
  * TO-DO mostrar resultados disponibles
  */
 async function getResultadosPendientes(req, res) {
+  console.log("asdasd");
   try {
+    console.log("asdasd");
     const [pendientes, postError] = await ResultadoService.getResultadosPendientes();
-    if (!pendientes || pendientes.length === 0) {
+    if (!pendientes) {
       respondError(req, res, 500, postError);
       return;
     }
