@@ -32,6 +32,9 @@ function PageRoot() {
             <Button color='inherit' onClick={() => navigate('/')}>
               HOME
             </Button>
+            <Button color='inherit' onClick={() => navigate('/getForms')}>
+              VER POSTULACIONES
+            </Button>
             <Button color='inherit' onClick={() => navigate('/Forms')}>
               POSTULAR
             </Button>

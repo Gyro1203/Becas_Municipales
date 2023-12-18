@@ -1,9 +1,9 @@
-import PostulacionForm from "../components/PostulacionForm";
+import VerPostulaciones from "../components/verPostulaciones";
 
 function Postulacion() {
     return (
       <>
-        <PostulacionForm />
+        <VerPostulaciones />
       </>
     );
 }
