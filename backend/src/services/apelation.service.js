@@ -27,8 +27,8 @@ async function createApelations( rutuser, apelation) {
     try {
         const { apelacion, razon, fecha, estado } = apelation;
         const { username, rut } = await User.findOne({ rut: rutuser }).exec(); 
-        const apelationFound = await Apelation.findOne({ rut: rutuser }).exec();
-        if (apelationFound) return [null, "Usted ya ha realizado una apelacion"];
+        // const apelationFound = await Apelation.findOne({ rut: rutuser }).exec();
+        // if (apelationFound) return [null, "Usted ya ha realizado una apelacion"];
         const newApelation = new Apelation({
             username,
             rut,
@@ -56,7 +56,8 @@ async function getApelationsById(id) {
     } catch (error) {
         handleError(error, "apelation.service -> getApelationById");
     }
-}   
+}
+  
 /**
  * Filtra las apelaciones por rut
  * @param {String} rutuser

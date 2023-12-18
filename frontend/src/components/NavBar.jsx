@@ -7,7 +7,7 @@ function NavBar() {
     return(
         <header>
             <nav>
-                <h1>LOGO</h1>
+                <img src="https://permisodecirculacion.cl/wp-content/uploads/2020/03/Muncipalidad_de_Concepcion-1024x769-1-300x225.png" alt="" />
                 <ul>
                     <li>
                         <button onClick={() => navigate('/')}>HOME</button>

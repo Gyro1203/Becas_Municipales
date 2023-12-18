@@ -18,11 +18,11 @@ router.use(authenticationMiddleware);
 
 // Define las rutas para los apelations
 
-router.get("/", apelationController.getApelations);
+router.get("/", apelationController.getApelations, authorizationMiddleware.isEncargado);
 router.get("/MyApelacion", authorizationMiddleware.isPostulante,
  apelationController.getApelationByRut);
 router.post("/", authorizationMiddleware.isPostulante, apelationController.createApelation);
-router.get("/:id", apelationController.getApelationById);
+router.get("/:id", authorizationMiddleware.isEncargado, apelationController.getApelationById);
 router.put("/:id", authorizationMiddleware.isEncargado, apelationController.updateApelationById);
 router.delete("/MiApelacion/:id",
 authorizationMiddleware.isPostulante,

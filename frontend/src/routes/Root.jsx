@@ -26,6 +26,9 @@ function PageRoot() {
   return (
     <div>
       <div>
+        <div>
+          <img src="https://www.movilh.cl/wp-content/uploads/2016/05/conce.jpg"/>
+        </div>
         <h1>Aqui deberia ir un header</h1>
         <p>Estas logeado como: {user.roles[0]["name"]}</p>
         <button onClick={handleLogout}>Cerrar sesion</button>

@@ -74,8 +74,10 @@ const apelationStatus = Joi.object({
         "any.required": "La fecha es obligatoria.",
         "date.format": "El formato de la fecha es AÑO-MES-DIA",
     }),
-    estado: Joi.boolean().required().messages({
-        "boolean.base": "El estado debe ser de tipo boolean.",
+    estado: Joi.string().required().valid("Aceptada", "Rechazada", "En revisión").messages({
+        "string.base": "El estado debe ser de tipo texto.",
+        "string.empty": "El estado no puede estar vacío.",
+        "string.valid": "El estado debe ser Aceptada, Rechazada o En revisión.",
         "any.required": "El estado es obligatorio.",
     }),
 

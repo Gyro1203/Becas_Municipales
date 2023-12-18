@@ -5,6 +5,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './routes/Root.jsx';
 import ErrorPage from './routes/ErrorPage.jsx';
 import Login from './routes/Login.jsx';
+import Apelacion from './routes/Apelacion/Apelacion.jsx';
+import CreateApelacion from './routes/Apelacion/CreateApelacion.jsx';
+import DetallesApelacion from './routes/Apelacion/DetallesApelacion.jsx';
+import EditarApelacion from './routes/Apelacion/EditarApelacion.jsx';
 
 const router = createBrowserRouter([
   {
@@ -13,9 +17,26 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: '/apelation',
+        element: <Apelacion/>,
+      },
+      {
+        path: '/apelation/:id',
+        element: <DetallesApelacion/>,
+      },
+      {
+        path: '/apelation/create',
+        element: <CreateApelacion/>,
+      },
+      {
+        path: '/apelation/:id/edit',
+        element: <EditarApelacion/>,
+      },
+      {
         path: '/',
         element: <App />,
       },
+      
     ],
   },
   {
