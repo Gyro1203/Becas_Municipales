@@ -6,54 +6,57 @@ const { handleError } = require("../utils/errorHandler.js");
 
 /**
  * Crear nuevas becas
-*/
-async function createBeca(beca) {
-  try {
-    const { typeBeca, descripcionBeca } = beca;
+ */
+  async function createBeca(beca) {
+    try {
+      const { typeBeca, descripcionBeca } = beca;
   
-    const createFound = await Create.findOne({ typeBeca: beca.typeBeca });
-    if (createFound) return [null, "La beca ya está registrada"];
+      const createFound = await Create.findOne({ typeBeca: beca.typeBeca });
+      if (createFound) return [null, "La beca ya está registrada"];
   
-    const newBeca = new Create({
-      typeBeca,
-      descripcionBeca,
-    });
-    await newBeca.save();
+      const newBeca = new Create({
+        typeBeca,
+        descripcionBeca,
+      });
+      await newBeca.save();
   
-    return [newBeca, null];
-  } catch (error) {
-    handleError(error, "create.service -> createBeca");
+      return [newBeca, null];
+    } catch (error) {
+      handleError(error, "create.service -> createBeca");
+    }
   }
+
+
+  /**
+   * Ver Becas existentes
+   */
+  async function getBecas() {
+    try {
+        const becas = await Create.find().exec();
+        if (!becas) return [null, "No existen becas registradas"];
+
+        return [becas, null];
+    } catch (error) {
+        handleError(error, "create.service -> getBecas");
+    }
 }
 
 
-/**
-* Ver Becas existentes
-*/
-async function getBecas() {
+  /**
+   * Becas Vencidas
+   */
+async function getBecasVencidas() {
+  const fechaActual = new Date();
   try {
-    const becas = await Create.find().exec();
-    if (!becas) return [null, "No existen becas registradas"];
-
-    return [becas, null];
+    const becasVencidas = await Create.find({ vencimientoBeca: { $lt: fechaActual } });
+    return becasVencidas;
   } catch (error) {
-    handleError(error, "create.service -> getBecas");
-  }
-}
-
-/**
-* Eliminar Becas especificas
-*/
-async function deleteBeca(typeBeca) {
-  try {
-    return await Create.findByIdAndDelete(typeBeca);
-  } catch (error) {
-    handleError(error, "create.service -> deleteBeca");
+    handleError(error, "create.service -> getBecasVencidas");
   }
 }
 
 module.exports = {
   createBeca,
   getBecas,
-  deleteBeca,
+  getBecasVencidas,
 };

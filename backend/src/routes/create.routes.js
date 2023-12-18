@@ -20,7 +20,7 @@ router.use(authenticationMiddleware);
 // Define las rutas para la autenticación
 router.post("/", authorizationMiddleware.isEncargado, createController.createBeca);
 router.get("/", createController.getBecas);
-router.delete("/", createController.deleteBeca);
+router.get("/exp", authenticationMiddleware.isEncargado, createController.getBecasVencidas);
 
 
 // Exporta el enrutador

@@ -42,35 +42,23 @@ async function getBecas(req, res) {
       handleError(error, "create.controller -> getBecas");
       respondError(req, res, 400, error.message);
     }
-}
+  }
+
 
 /**
- * Elimina beca existente
+ * Mostrar becas existentes
  */
-async function deleteBeca(req, res) {
+async function getBecasVencidas(req, res) {
   try {
-    const { params } = req;
-    const { error: paramsError } = CreateService.deleteBeca(typeBeca);
-    if (paramsError) return respondError(req, res, 400, paramsError.message);
-
-    const beca = await CreateService.deleteUser(params.typeBeca);
-    !beca
-      ? respondError(
-          req,
-          res,
-          404,
-          "No se encontro la beca solicitada",
-          "Verifique el tipo de beca ingresada",
-        )
-      : respondSuccess(req, res, 200, user);
+    const elementos = await CreateService.getBecasVencidas();
+    res.json(elementos);
   } catch (error) {
-    handleError(error, "beca.controller -> deleteBeca");
-    respondError(req, res, 500, "No se pudo eliminar la beca");
+    res.status(500).json({ error: error.message });
   }
 }
 
 module.exports = {
   createBeca,
   getBecas,
-  deleteBeca,
+  getBecasVencidas,
 };

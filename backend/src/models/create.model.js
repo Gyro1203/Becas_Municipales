@@ -2,6 +2,7 @@
 // Importa el modulo 'mongoose' para crear la conexion a la base de datos
 const mongoose = require("mongoose");
 
+
 // Crea el esquema de la coleccion 'Crear'
 const createSchema = new mongoose.Schema(
   {
@@ -14,12 +15,17 @@ const createSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    vencimientoBeca: {
+      type: Date,
+      required: true,
+    },
   },
   {
     timestamps: { currentTime: ()=> Date.now() - 3 * 60 * 60 * 1000 },
     versionKey: false,
   },
 );
+
 
 /** Modelo de datos 'Create' */
 const Create = mongoose.model("Create", createSchema);
