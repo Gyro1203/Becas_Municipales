@@ -6,7 +6,7 @@ import Root from './routes/Root.jsx';
 import ErrorPage from './routes/ErrorPage.jsx';
 import Login from './routes/Login.jsx';
 import Postulacion from './routes/Postulacion.jsx';
-import Resultados from './routes/Postulacion.jsx';
+import Resultados from './routes/Resultados.jsx';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
