@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { getMyForms, deleteForm  } from '../services/Postulacion.service';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button, Card, CardContent, Typography } from '@mui/material';
 
 const VerMisPostulaciones = () => {
 
@@ -20,18 +21,22 @@ const VerMisPostulaciones = () => {
             <ul>
                 {postulaciones.map((postulacion) => (
                     <li key={postulacion._id}>
-                        <a>
-                            {postulacion.username} | 
-                            | {postulacion.rut} | 
-                            | {postulacion.typeBeca} |  
-                            | {postulacion.address} | 
-                            | {postulacion.handicap} | 
-                            | {postulacion.birthdate} 
-                        </a>
-                        <button onClick={()=>deleteForm(postulacion._id)}>Eliminar</button>
+                        <Card>
+                            <CardContent>
+                                <Typography>{postulacion.username}</Typography>
+                                <Typography>{postulacion.rut}</Typography>
+                                <Typography>{postulacion.typeBeca}</Typography>
+                                <Typography>{postulacion.address}</Typography>
+                                <Typography>{postulacion.handicap}</Typography>
+                                <Typography>{postulacion.birthdate}</Typography>
+                                <Button onClick={()=>deleteForm(postulacion._id)}>Eliminar</Button>
+                            </CardContent>
+                        </Card>
+                        
                     </li>
                 ))}
-            </ul>
+                </ul>
+
         </>
     )
 }
