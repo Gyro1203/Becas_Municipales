@@ -6,7 +6,7 @@ import Root from './routes/Root.jsx';
 import ErrorPage from './routes/ErrorPage.jsx';
 import Login from './routes/Login.jsx';
 import Resultados from './routes/Resultados.jsx';
-import {ThemeProvider} from '@mui/material/styles';
+
 
 
 
