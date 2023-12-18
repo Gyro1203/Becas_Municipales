@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../services/auth.service';
 import { AuthProvider, useAuth } from '../context/AuthContext';
 import NavBar from '../components/NavBar';
+import { Container, AppBar, IconButton, Toolbar, Button, Typography } from '@mui/material';
 
 function Root() {
   return (
     <AuthProvider>
-      <NavBar />
       <PageRoot />
     </AuthProvider>
   );
@@ -24,17 +24,33 @@ function PageRoot() {
   const { user } = useAuth();
 
   return (
-    <div>
-      <div>
-        <div>
+    <Container>
+      <AppBar position='static' >
+        <Toolbar>
           <img src="https://www.movilh.cl/wp-content/uploads/2016/05/conce.jpg"/>
-        </div>
-        <h1>Aqui deberia ir un header</h1>
-        <p>Estas logeado como: {user.roles[0]["name"]}</p>
-        <button onClick={handleLogout}>Cerrar sesion</button>
-      </div>
+          <Typography variant='h6' sx={{flexGrow: 1}}>BECAS MUNICIPALES</Typography>
+          <header>
+            <Button color='inherit' onClick={() => navigate('/')}>
+              HOME
+            </Button>
+            <Button color='inherit' onClick={() => navigate('/forms')}>
+              VER POSTULACIONES
+            </Button>
+            <Button color='inherit' onClick={() => navigate('/forms/myForms')}>
+              MIS POSTULACIONES
+            </Button>
+            <Button color='inherit' onClick={() => navigate('/forms/create')}>
+              POSTULAR
+            </Button>
+          </header>
+        </Toolbar>
+        <Toolbar>
+          <Typography variant='h6' sx={{flexGrow: 1}}>Estas logeado como: {user.roles[0]["name"]}</Typography>
+          <Button color='inherit' onClick={handleLogout}>Cerrar sesion</Button>
+        </Toolbar>
+      </AppBar>
       <Outlet />
-    </div>
+    </Container>
   );
 }
 
