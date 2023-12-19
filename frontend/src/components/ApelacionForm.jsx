@@ -10,9 +10,9 @@ export default function ApelacionForm() {
   } = useForm()
 
   const navigate = useNavigate();
-  const onSubmit =async (data) => {
-    await createApelation(data);
+  const onSubmit = async (data) => {
     console.log(data);
+    await createApelation(data);
     navigate("/apelation");
   }
 
@@ -32,7 +32,7 @@ export default function ApelacionForm() {
       </div>
       <div>
       <label htmlFor="fecha">Fecha</label>
-      <input  autoComplete="off" {...register("fecha", { required: true })} />
+      <input type="date" autoComplete="off" {...register("fecha", { required: true })} />
       </div>
       {/* errors will return when field validation fails  */}
       {errors.exampleRequired && <span>Campo vacio!</span>}

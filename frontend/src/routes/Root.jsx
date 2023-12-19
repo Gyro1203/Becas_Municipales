@@ -42,6 +42,7 @@ function PageRoot() {
             <Button color='inherit' onClick={() => navigate('/forms/create')}>
               POSTULAR
             </Button>
+            <button onClick={() => navigate('/apelation')}>Apelaciones</button>
           </header>
         </Toolbar>
         <Toolbar>

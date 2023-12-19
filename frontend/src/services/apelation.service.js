@@ -39,9 +39,9 @@ try {
 }
 };
 
-export const updateApelation = async (apelation) => {
+export const updateApelation = async (id, apelation) => {
 try {
-    const response = await axios.put("/apelation", apelation);
+    const response = await axios.put(`/apelation/${id}`, apelation);
     if (response.status === 201) {
         console.log(response.data);
         return response.data.data;

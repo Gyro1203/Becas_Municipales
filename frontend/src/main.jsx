@@ -1,8 +1,8 @@
 import './index.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+// import '@fontsource/roboto/300.css';
+// import '@fontsource/roboto/400.css';
+// import '@fontsource/roboto/500.css';
+// import '@fontsource/roboto/700.css';
 import ReactDOM from 'react-dom/client';
 import App from './routes/App.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -18,6 +18,7 @@ import Postular from './routes/Postulaciones/Postular.jsx';
 import Detalles from './routes/Postulaciones/Detalles.jsx';
 import MisPostulaciones from './routes/Postulaciones/MisPostulaciones.jsx';
 import Resultados from './routes/Resultados.jsx';
+import VerApelaciones from './routes/Apelacion/VerApelaciones.jsx';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: '/apelation/:id/edit',
         element: <EditarApelacion/>,
+      },
+      {
+        path: '/apelation/VerApelaciones',
+        element: <VerApelaciones/>,
       },
       {
         path: '/',
