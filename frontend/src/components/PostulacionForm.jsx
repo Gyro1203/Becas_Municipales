@@ -1,5 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { createForm } from '../services/Postulacion.service';
+import { Box, Button, TextField } from '@mui/material';
+import { grey } from '@mui/material/colors';
 
 export default function PostulacionForm(){
 
@@ -15,41 +17,47 @@ export default function PostulacionForm(){
     }
 
     return(
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <Box 
+            component="form" 
+            onSubmit={handleSubmit(onSubmit)}
+            sx={{background: grey[800], width:'50%', marginLeft:'25%', marginTop:'10px'}}
+        >
             <div>
-                <label htmlFor='typebeca'>Beca</label>
-                <input
+                <TextField
                     name="typeBeca"
                     type="string"
+                    label="Beca"
+                    variant='outlined'
                     {...register('typeBeca', { required: true })}
                 />
             </div>
             <div>
-                <label htmlFor='birthdate'>Fecha de Nacimiento</label>
-                <input
+                <TextField
                     name="birthdate"
-                    type="date"
+                    type='date'
+                    variant='outlined'
                     {...register('birthdate', { required: true , min: 1900-1-1})}
                 />
             </div>
             <div>
-                <label htmlFor='address'>Dirección</label>
-                <input
+                <TextField
                     name="address"
                     type="string"
+                    label="Direccion"
                     {...register('address', { required: true })}
                 />
             </div>
             <div>
-                <label htmlFor='handicap'>Discapacidad</label>
-                <input
+                <TextField
                     name="handicap"
                     type="string"
+                    label="Discapacidad"
+                    variant='outlined'  
                     {...register('handicap', { required: true })}
                 />
             </div>
             {errors.exampleRequired && <span>Este campo es obligatorio</span>}
-            <input type="submit" />
-        </form>
+            <Button type="submit">Enviar</Button>
+        </Box>
     );
 }
