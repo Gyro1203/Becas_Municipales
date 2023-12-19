@@ -27,7 +27,7 @@ const apelationBodySchema = Joi.object({
         "any.required": "La razón es obligatoria.",
         "string.base": "La razón debe ser de tipo string.",
     }),
-    fecha: Joi.date().iso().required().messages({
+    fecha: Joi.date().required().messages({
         "any.required": "La fecha es obligatoria.",
         "date.format": "El formato de la fecha es AÑO-MES-DIA",
     }),

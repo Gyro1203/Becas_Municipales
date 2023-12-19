@@ -25,7 +25,7 @@ async function getApelations() {
  */
 async function createApelations( rutuser, apelation) {
     try {
-        const { apelacion, razon, fecha, estado } = apelation;
+        const { apelacion, razon, fecha } = apelation;
         const { username, rut } = await User.findOne({ rut: rutuser }).exec(); 
         // const apelationFound = await Apelation.findOne({ rut: rutuser }).exec();
         // if (apelationFound) return [null, "Usted ya ha realizado una apelacion"];
@@ -35,7 +35,7 @@ async function createApelations( rutuser, apelation) {
             apelacion,
             razon,
             fecha,
-            estado,
+            estado: ["En revisión"],
         });
         await newApelation.save();
         return [newApelation, null];

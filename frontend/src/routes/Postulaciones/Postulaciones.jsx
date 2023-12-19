@@ -1,4 +1,4 @@
-import VerPostulaciones from "../../components/verPostulaciones";
+import VerPostulaciones from "../../components/VerPostulaciones";
 
 function Postulaciones() {
     return (

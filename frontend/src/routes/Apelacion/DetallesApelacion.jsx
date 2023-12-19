@@ -20,7 +20,6 @@ const DetallesApelacion=() => {
   return (
     <>
     
-    <Link to={`/apelation/${apelation._id}/edit`}>Editar</Link>
     <div>
     <h1>DetallesApelacion</h1>
     <p>{apelation._id}</p>
@@ -30,6 +29,7 @@ const DetallesApelacion=() => {
     <p>{apelation.razon}</p>
     <p>{apelation.fecha}</p>
     <p>{apelation.estado}</p>
+    <Link to={`/apelation/${apelation._id}/edit`}>Actualizar Estado</Link>
     </div>
     <button type="button" onClick={()=> navigate("/apelation")} >Volver</button>
     </>
